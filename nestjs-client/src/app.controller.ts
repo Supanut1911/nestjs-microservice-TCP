@@ -1,7 +1,10 @@
-import { Controller, Logger, Post, Body, Get } from '@nestjs/common';
+import { Controller, Logger, Post, Body, Get, ForbiddenException } from '@nestjs/common';
+import { exception } from 'console';
+import { hostname } from 'os';
 import { CoffeeDto } from './coffee.dto';
 import { CoffeeService } from './coffee.service';
 import { HeroDto } from './hero.dto';
+import { HeroService } from './hero.service';
 import { MathService } from './math.service';
 
 @Controller()
@@ -12,7 +15,8 @@ export class AppController {
   // Inject the math service
   constructor(
     private mathService: MathService,
-    private coffeeService: CoffeeService
+    private coffeeService: CoffeeService,
+    private heroService: HeroService
   ) {}
 
   // Map the 'POST /add' route to this method
@@ -50,4 +54,18 @@ export class AppController {
     this.logger.log('create coffeesss')
     return this.coffeeService.createCoffee(coffeeDto)
   }
+
+  @Get('getHeros')
+  async getHerosx() {
+    return this.heroService.getHeros()
+  }
+
+  @Post('addHero')
+  async addHero(
+    @Body() heroDto: HeroDto
+  ) {
+      return this.heroService.addHero(heroDto)
+  }
+
 }
+
