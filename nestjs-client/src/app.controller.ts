@@ -29,7 +29,7 @@ export class AppController {
 
   @Get('getmyHeros')
   async getHeros() {
-    this.logger.log('getHero 111')
+    this.logger.log('getHero 222')
     return this.mathService.getHeros()
   }
 
@@ -64,8 +64,7 @@ export class AppController {
   async addHero(
     @Body() heroDto: HeroDto
   ) {
-      return this.heroService.addHero(heroDto)
+      return await this.heroService.addHero(heroDto)
   }
-
 }
 
