@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../config/typeorm.config';
-import { AppController } from './app.controller';
-import { MathService } from './math.service';
 import { HeroModule } from './hero/hero.module';
 
 @Module({
@@ -10,7 +8,7 @@ import { HeroModule } from './hero/hero.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     HeroModule
   ],
-  controllers: [AppController],
-  providers: [MathService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

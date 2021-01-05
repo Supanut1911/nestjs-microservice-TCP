@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Logger, Post, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Logger, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { ExceptionFilter } from '../../rpc-exception/rpc-exception.filter';
-import { HeroDto } from '../hero.dto';
+import { HeroDto } from './hero.dto';
 import { HeroService } from './hero.service';
 
 @Controller('hero')
@@ -16,7 +16,6 @@ export class HeroController {
         return this.heroservice.getHeros()
     }
 
-    // @UseFilters(new ExceptionFilter())
     @UseFilters(new ExceptionFilter())
     @MessagePattern('addHero')
     @UsePipes(ValidationPipe)
@@ -26,6 +25,4 @@ export class HeroController {
         console.log('called add');
         return this.heroservice.addHero(heroDto)
     }
-
-
 }

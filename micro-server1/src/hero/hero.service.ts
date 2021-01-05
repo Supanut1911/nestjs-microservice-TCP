@@ -1,7 +1,6 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
-import { getRepository } from 'typeorm';
-import { HeroDto } from '../hero.dto';
+import { HeroDto } from './hero.dto';
 import { Hero } from './hero.entity';
 import { HeroRepository } from './hero.repository';
 
@@ -30,9 +29,6 @@ export class HeroService {
                 message: 'add hero success'
             }
         } catch (error) {
-            // throw new BadRequestException('add hero fail')
-
-            
             throw new RpcException('add hero fail')
         }
     }
