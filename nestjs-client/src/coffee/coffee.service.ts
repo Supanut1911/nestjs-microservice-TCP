@@ -16,8 +16,15 @@ export class CoffeeService {
         })
     }
 
-    public getCoffees() {
-        return this.client.send('getmyCoffees', '')
+    public  getCoffees() {
+        let res =  this.client.send('getmyCoffees', '')
+        res.subscribe(r => {
+            console.log(r);
+            
+        })
+        
+        return res
+        // return this.client.send('getmyCoffees', '')
     }
 
     public createCoffee(data: CoffeeDto) {

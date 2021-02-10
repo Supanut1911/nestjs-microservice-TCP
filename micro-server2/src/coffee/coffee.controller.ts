@@ -12,6 +12,8 @@ export class CoffeeController {
     @MessagePattern('getmyCoffees')
     async getCoffess() {
         this.logger.log('getCoffees')
+        console.log('here');
+        
         return this.coffeeService.getCoffees()
     }
 
